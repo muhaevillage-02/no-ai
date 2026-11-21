@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F8FA">
+<meta name="site-build" content="noai-form-verified-20261121-r3">
+<title>NO Ai 공모전 | LOGIN LAB</title>
+<style>
+:root{
+  --bg:#0b18c7;
+  --bg2:#121fdc;
+  --panel:#ffffff;
+  --panel-soft:#eef2ff;
+  --text:#111318;
+  --muted:#5a6474;
+  --line:#d8dcef;
+  --accent:#62ff32;
+  --accent-2:#d8ff8a;
+  --white:#fff;
+  --shadow:0 24px 60px rgba(4,10,83,.24);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',Arial,sans-serif;background:linear-gradient(180deg,var(--bg) 0%, #1020d6 38%, #0d18b7 100%);color:var(--white);word-break:keep-all;line-height:1.6}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}
+button,a{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.demo-banner{background:#0a0f67;color:#dbe2ff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.14)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(9,18,139,.84);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1)}
+.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:21px;letter-spacing:-.03em;white-space:nowrap}
+.brandmark{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:var(--accent);color:#09135f;font-size:16px;font-weight:900}
+.brand i{font-style:normal;color:#dde2ff;font-weight:700}
+.navlinks{display:flex;gap:24px;font-size:14px;font-weight:700;color:#e7ebff}
+.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:14px;padding:13px 22px;font-weight:900;transition:transform .16s ease, background .16s ease, color .16s ease}
+.button:hover{transform:translateY(-2px)}
+.button.primary{background:var(--accent);color:#08103d;box-shadow:0 10px 24px rgba(91,255,54,.22)}
+.button.primary:hover{background:#79ff4c}
+.button.ghost{background:#ffffff;color:#08103d;border:1px solid #d7dbef}
+.button.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.26)}
+.button.small{font-size:13px;padding:10px 16px;border-radius:12px}
+.hero{padding:34px 0 34px;position:relative}
+.hero:before{content:'';position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.14) 1.2px, transparent 1.2px);background-size:26px 26px;opacity:.28;mask-image:linear-gradient(#000 8%, transparent 98%);pointer-events:none}
+.window{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:30px;box-shadow:var(--shadow);background:rgba(255,255,255,.08)}
+.windowbar{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;color:#d9e1ff;font-size:12px;font-weight:800;letter-spacing:.05em;background:rgba(0,0,0,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.dots{display:flex;gap:7px}.dots i{width:10px;height:10px;border-radius:50%;display:block;background:#ffffff55}.dots i:nth-child(1){background:var(--accent)}.dots i:nth-child(2){background:#f8ff8d}.dots i:nth-child(3){background:#84d7ff}
+.windowbody{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:52px 52px 46px;min-height:480px}
+.ribbon{position:absolute;right:-64px;top:34px;transform:rotate(37deg);background:var(--accent);color:#05104d;font-weight:1000;font-size:26px;padding:12px 90px;letter-spacing:-.04em;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:900;color:#ddf7ff;letter-spacing:.02em}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(98,255,50,.18)}
+.hero h1{margin:16px 0 20px;font-size:clamp(58px,8vw,102px);line-height:.98;letter-spacing:-.085em;font-weight:1000}
+.hero h1 .white{color:#fff}.hero h1 .green{color:var(--accent)}
+.selectfx{display:inline-block;background:rgba(255,255,255,.11);padding:0 .08em .03em;border-left:4px solid var(--accent)}
+.lead{margin:0 0 10px;font-size:clamp(20px,2.5vw,28px);font-weight:900;letter-spacing:-.05em;color:#fff}
+.marker{background:linear-gradient(transparent 26%, rgba(98,255,50,.34) 26% 96%, transparent 96%);padding:0 .06em}
+.sub{margin:0 0 24px;color:#d8ddff;font-size:15px;line-height:1.8;max-width:560px}
+.heroactions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.tiny{font-size:12px;color:#ccd4ff;font-weight:700}
+.heroart{display:grid;gap:18px;align-content:center}
+.info-card{background:#fff;color:var(--text);border-radius:24px;padding:22px 22px 18px;border:1px solid rgba(255,255,255,.55);box-shadow:0 18px 34px rgba(6,10,65,.18)}
+.info-card h3{margin:0 0 14px;font-size:20px;line-height:1.35;letter-spacing:-.05em}
+.strikebox{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#f6f7fb;border:2px solid #cad1ec;border-radius:999px;padding:16px 18px;position:relative;overflow:hidden}
+.strikebox:before,.strikebox:after{content:'';position:absolute;left:9%;right:9%;height:7px;background:#ff3b3b;border-radius:999px;transform-origin:center;z-index:3;box-shadow:0 2px 0 rgba(255,255,255,.45)}.strikebox:before{transform:rotate(8deg)}.strikebox:after{transform:rotate(-8deg)}
+.logo-badge{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;padding:6px 4px;text-align:center}
+.logo-mark{display:grid;place-items:center;width:54px;height:54px}.logo-mark svg{width:100%;height:100%;display:block}
+.logo-label{font-weight:1000;font-size:15px;line-height:1;color:#111318;letter-spacing:-.03em;white-space:nowrap}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 17px;backdrop-filter:blur(6px)}
+.stat small{display:block;color:#d9e1ff;font-size:12px;font-weight:800;letter-spacing:.03em;margin-bottom:6px}.stat strong{display:block;font-size:18px;line-height:1.4;letter-spacing:-.03em}
+.meta{margin-top:18px;display:grid;grid-template-columns:1.1fr 1fr .8fr;gap:12px}
+.metaitem{background:#fff;color:#111319;border-radius:18px;padding:18px 18px 16px;box-shadow:0 10px 30px rgba(7,10,73,.12)}
+.metaitem small{display:block;color:#5f6980;font-size:11px;font-weight:900;letter-spacing:.05em;margin-bottom:5px}.metaitem strong{font-size:16px;line-height:1.5;letter-spacing:-.04em}
+.section{padding:66px 0}.section.alt{background:rgba(255,255,255,.05)}
+.sectionhead{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:26px}
+.num{display:inline-block;background:var(--accent-2);color:#0a1036;font-size:12px;font-weight:1000;border-radius:999px;padding:4px 12px;letter-spacing:.04em}
+.sectionhead h2,.purpose h2,.bottomcta h2{margin:8px 0 0;font-size:clamp(30px,4.8vw,44px);line-height:1.18;letter-spacing:-.07em;font-weight:1000}
+.desc{margin:8px 0 0;color:#d9deff;font-size:14px}
+.purpose{display:grid;grid-template-columns:1fr 1.02fr;align-items:center;gap:28px}
+.purpose p{font-size:15px;color:#e0e5ff;line-height:1.9;margin:0 0 13px}
+.note{background:#fff;color:var(--text);border-radius:26px;padding:28px 28px 24px;border:1px solid #dde1f1;box-shadow:var(--shadow)}
+.notehead{display:flex;justify-content:space-between;gap:10px;color:#293481;font-size:12px;font-weight:900;padding-bottom:14px;border-bottom:1px solid #e8ebf6;margin-bottom:18px}
+.note h3{margin:0 0 16px;font-size:30px;line-height:1.28;letter-spacing:-.07em}
+.checkline{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px dotted #c9d1e8;color:#232a3e;font-weight:700}.checkline:last-child{border-bottom:0}.check{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#08103d;display:grid;place-items:center;font-weight:1000}
+.gridq{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.qcard{background:#fff;color:var(--text);border-radius:22px;border:1px solid #d6ddf0;min-height:210px;padding:24px 24px 22px;display:grid;grid-template-columns:56px 1fr;gap:15px;box-shadow:0 12px 28px rgba(6,11,72,.1)}
+.qicon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:#eef3ff;font-size:28px}
+.qcard:nth-child(2) .qicon{background:#ecffe7}.qcard:nth-child(3) .qicon{background:#f0f5ff}
+.qtag{display:inline-flex;align-items:center;font-size:11px;font-weight:1000;color:#1832b4;letter-spacing:.04em}
+.qcard h3{margin:6px 0 8px;font-size:20px;line-height:1.45;letter-spacing:-.05em}.qcard p{margin:0;color:#5e6778;font-size:13px;line-height:1.7}
+.judgegrid{display:grid;grid-template-columns:1.05fr 1fr;gap:22px}
+.panel{background:#fff;color:var(--text);border-radius:24px;padding:26px 28px;border:1px solid #d8ddef;box-shadow:0 14px 34px rgba(6,11,72,.1)}
+.paneltitle{margin:0 0 16px;font-size:21px;font-weight:1000;letter-spacing:-.04em}
+.criteria{display:grid;gap:18px}.criterion{display:grid;grid-template-columns:1fr;gap:7px}.criterion strong{font-size:16px;letter-spacing:-.03em}.track{height:12px;border-radius:999px;background:#e7ebf6;overflow:hidden}.track div{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),#39cc2f)}.criterion small,.rules p{color:#5d6778;font-size:13px;line-height:1.75}
+.rules .quote{margin-top:18px;background:#0c1bbd;color:#fff;border-radius:16px;padding:16px 18px;font-size:13px;font-weight:800;line-height:1.7}
+.prizehero{display:flex;justify-content:space-between;gap:16px;align-items:center;background:linear-gradient(135deg,#1020d6 0%, #09106f 100%);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:24px;padding:28px 32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.prizehero:before{content:'AWARD';position:absolute;right:-10px;top:-18px;font-size:98px;font-weight:1000;color:rgba(255,255,255,.08);letter-spacing:-.06em}
+.prizehero .kicker{font-size:14px;font-weight:900;color:#d8ddff}.prizehero h3{margin:4px 0;font-size:clamp(34px,6vw,58px);line-height:1.1;letter-spacing:-.08em}.prizehero p{margin:0;color:#e6ebff;font-size:15px;font-weight:700}.trophy{font-size:72px;line-height:1;filter:drop-shadow(0 8px 16px rgba(0,0,0,.22))}
+.prizegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.prize{background:#fff;color:var(--text);border-radius:20px;padding:20px 20px 22px;border:1px solid #d7deef;box-shadow:0 10px 28px rgba(6,11,72,.09)}.prize .kicker{font-size:12px;font-weight:1000;color:#1b2f99}.prize h3{margin:8px 0 6px;font-size:24px;line-height:1.35;letter-spacing:-.05em}.prize p{margin:0;color:#5d6677;font-size:13px;line-height:1.7}.infoband{margin-top:14px;color:#dbe1ff;font-size:12px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stepcard{background:#fff;color:var(--text);border-radius:20px;padding:20px 22px;border:1px solid #d7deef;min-height:145px;box-shadow:0 10px 26px rgba(6,11,72,.09)}.stepcard h3{margin:7px 0;font-size:19px;letter-spacing:-.04em}.stepcard p{margin:0;color:#5f697a;font-size:13px;line-height:1.75}
+.faqs{margin-top:22px;border-top:1px solid rgba(255,255,255,.18)}.faqs details{border-bottom:1px solid rgba(255,255,255,.18);padding:16px 2px}.faqs summary{list-style:none;cursor:pointer;font-weight:900;font-size:15px;display:flex;justify-content:space-between;gap:12px}.faqs summary::after{content:'+';font-size:20px;color:var(--accent)}.faqs details[open] summary::after{content:'−'}.faqs p{margin:11px 24px 0 0;color:#dce2ff;font-size:14px;line-height:1.8}
+.bottomcta{text-align:center;padding:62px 20px 66px}.bottomcta p{color:#dce2ff;font-size:16px;line-height:1.8;margin:12px 0 20px}.statusline{margin-top:14px;color:#cfd7ff;font-size:13px;font-weight:700}
+.footer{padding:24px 0 32px;border-top:1px solid rgba(255,255,255,.12)}.footin{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.footer p{margin:4px 0;color:#d9e0ff;font-size:13px}
+.mobilecta{display:none}
+#application{border:0;padding:0;width:min(880px, calc(100% - 24px));max-height:min(94dvh,940px);border-radius:26px;overflow:hidden;box-shadow:0 38px 100px rgba(0,0,0,.38);background:#fff;color:var(--text)}
+#application::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+.modalhead{padding:22px 24px 12px;background:linear-gradient(135deg,#0f1bc8,#1d2be2);color:#fff}.modalheadtop{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.modalhead h2{margin:6px 0 0;font-size:29px;line-height:1.2;letter-spacing:-.06em}.close{width:38px;height:38px;border-radius:50%;border:0;background:#ffffff1d;color:#fff;font-size:28px;line-height:1}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.progress div{height:8px;border-radius:999px;background:#ffffff2f}.progress div.active{background:var(--accent)}.progresslabels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;font-size:12px;font-weight:800;color:#d3dbff}.progresslabels span.active{color:#fff}
+.formbody{padding:24px 24px 8px}.formbody h3{margin:0 0 8px;font-size:24px;line-height:1.25;letter-spacing:-.05em}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}.field{display:block;font-size:14px;font-weight:800;color:#20263b}.field input,.field select,.field textarea{width:100%;margin-top:8px;border-radius:14px;border:1px solid #d7dced;background:#fff;padding:13px 14px;color:#161921;appearance:none}.field textarea{min-height:180px;resize:vertical;line-height:1.75}.field.full{grid-column:1 / -1}.helper{display:block;margin-top:7px;font-size:12px;font-weight:600;color:#657085;line-height:1.6}.required{color:#0f1bc8}.qfield{padding:18px 0;border-top:1px solid #edf0f8}.qfield:first-child{padding-top:4px;border-top:0}.qfield label{display:block;margin-top:4px;font-size:18px;line-height:1.55;letter-spacing:-.03em}.count{display:block;text-align:right;font-size:12px;font-weight:800;color:#6b7488;margin-top:7px}
+.review{border:1px solid #d9deee;border-radius:16px;background:#f8f9fd;overflow:hidden}.review summary{padding:14px 16px;font-weight:900;cursor:pointer;list-style:none}.reviewcontent{white-space:pre-wrap;padding:0 16px 16px;font-size:13px;color:#536072;line-height:1.8}.consentbox{margin-top:14px;padding:17px 18px;border-radius:18px;background:#f8f9fd;border:1px solid #dbe0ee}.consentbox h4{margin:0 0 8px;font-size:16px;letter-spacing:-.03em}.consentbox p{margin:0 0 10px;color:#5a6474;font-size:13px;line-height:1.7}.checkfield{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:700;color:#1c2438}.checkfield input{margin-top:3px}
+.error{margin:0 24px 12px;padding:13px 15px;border-radius:14px;background:#fff0f0;color:#b10d25;font-size:13px;font-weight:800}
+.formfooter{display:flex;justify-content:space-between;gap:10px;padding:12px 24px 22px}.success{text-align:center;padding:34px 24px 38px}.successicon{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:var(--accent);color:#08103d;font-weight:1000;font-size:34px}.success h3{margin:0 0 8px;font-size:27px;letter-spacing:-.05em}.success p{margin:0 0 8px;color:#5d6778;line-height:1.7}.receipt{font-weight:900;color:#0f1bc8}.statusline[hidden],.error[hidden],.success[hidden]{display:none}body.modalopen{overflow:hidden}
+@media (max-width:860px){.windowbody,.purpose,.judgegrid{grid-template-columns:1fr}.windowbody{padding:38px 30px 30px}.heroart{order:2}.gridq{grid-template-columns:1fr 1fr}.meta{grid-template-columns:1fr}.prizegrid,.steps{grid-template-columns:1fr}.ribbon{font-size:22px;right:-72px;top:38px;padding:10px 90px}.footin{display:block}.formgrid{grid-template-columns:1fr}}
+@media (max-width:620px){.wrap{padding:0 17px}.navin{height:60px}.brand{font-size:18px}.navlinks{display:none}.hero{padding:20px 0 22px}.window{border-radius:22px}.windowbar{height:42px;padding:0 15px;font-size:10px}.windowbody{padding:26px 20px 18px;gap:20px}.hero h1{font-size:clamp(52px,14vw,74px)}.lead{font-size:19px}.sub{font-size:14px}.ribbon{font-size:18px;padding:9px 72px;right:-70px;top:26px}.stat-grid,.gridq{grid-template-columns:1fr}.meta .metaitem strong{font-size:15px}.section{padding:40px 0}.sectionhead h2,.purpose h2,.bottomcta h2{font-size:31px}.note{padding:21px}.note h3{font-size:26px}.panel,.prize,.stepcard{padding:18px}.prizehero{padding:24px 20px}.trophy{font-size:56px}.faqs p{font-size:13px}.footer{padding-bottom:90px}.mobilecta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:29;background:rgba(8,12,86,.84);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.16);padding:10px 17px calc(10px + env(safe-area-inset-bottom))}.mobilecta .button{width:100%}.modalhead{padding:18px 18px 12px}.modalhead h2{font-size:23px}.formbody{padding:18px 18px 6px}.formfooter{padding:12px 18px 18px}.error{margin:0 18px 10px}#application{width:calc(100% - 12px);max-height:calc(100dvh - 12px);border-radius:20px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+/* Application: scrollable on small screens and a fallback for embedded browsers. */
+.ribbon{pointer-events:none}
+#application{overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#application:not([open]):not(:target){display:none}
+#application:target:not([open]),#application.fallback-open{display:block;position:fixed;inset:0;margin:auto;z-index:100}
+body.modalopen:has(#application.fallback-open)::before{content:'';position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.58)}
+.formbody[hidden],#formFooter[hidden],#progressWrap[hidden],#success[hidden],#formError[hidden]{display:none!important}
+.apply[aria-disabled="true"]{pointer-events:none;opacity:.5}
+#application .formbody .desc{margin-bottom:16px}
+
+.affiliation-field{border:0;margin:0;padding:0;min-width:0}.affiliation-field legend{padding:0;margin:0 0 8px}.affiliation-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.affiliation-option{position:relative;display:block;cursor:pointer;min-width:0}.affiliation-option input[type=radio]{position:absolute;opacity:0;width:1px;height:1px;padding:0;margin:0;appearance:auto}.affiliation-option span{display:flex;align-items:center;justify-content:center;min-height:46px;padding:10px 5px;background:#fff;border:1px solid #d7dced;border-radius:12px;color:#20263b;font-size:14px;font-weight:800;line-height:1.3;text-align:center;transition:background .15s,border-color .15s}.affiliation-option input:checked+span{background:var(--accent);border-color:#27b900;color:#08103d}.affiliation-option input:focus-visible+span{outline:3px solid #0f1bc8;outline-offset:2px}.affiliation-detail{display:block;margin-top:12px}.affiliation-detail[hidden]{display:none}.affiliation-detail input{margin-top:7px}.affiliation-option:hover span{border-color:#0f1bc8}
+@media (max-width:420px){.logo-mark{width:46px;height:46px}.logo-label{font-size:13px}.strikebox{padding:14px 12px;gap:4px}}
+
+/* Reliable form display & iOS tap targets */
+#application .field select:disabled{opacity:.6;background:#f1f3f8}
+#application .field input,#application .field select{min-height:48px}
+#application .affiliation-option{touch-action:manipulation}
+#application .affiliation-detail:not([hidden]){display:block}
+#application .affiliation-detail[hidden]{display:none!important}
+#application .formfooter{position:sticky;bottom:0;z-index:2;background:#ffffff;border-top:1px solid #eef0f8}
+#application .formfooter .button{min-height:47px}
+#application .field select{appearance:auto;-webkit-appearance:menulist}
+
+/* 2026 responsive, accessible polish */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;
+  overflow-wrap:break-word;
+  padding-bottom:108px;
+}
+.wrap,.windowbody,.heroart,.stat-grid,.stat,.gridq,.qcard,.panel,.purpose,.note,.stepcard,.footer,.footin{min-width:0}
+.brand i{white-space:nowrap}.navin{min-width:0}
+.hero h1{letter-spacing:-.07em}
+.footer a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:#7dff68}
+.footer a:hover{color:var(--accent)}
+/* One fixed, centered application CTA for desktop + mobile */
+.floating-cta{
+  position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  transform:translateX(-50%);
+  z-index:40;
+  width:min(500px,calc(100% - 32px));
+  max-width:100%;
+  background:rgba(9,19,102,.87);
+  border:1px solid rgba(255,255,255,.24);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 12px 34px rgba(0,4,48,.36);
+  border-radius:20px;padding:8px;
+}
+.floating-cta .button{display:flex;width:100%;min-height:52px;font-size:16px;white-space:normal;text-align:center;line-height:1.4;letter-spacing:-.01em}
+body.modalopen .floating-cta{visibility:hidden}
+.server-status{margin-top:8px;color:#f9ecb4;font-size:12px;font-weight:700;line-height:1.45}
+.server-status.ready{color:#b2ff97}.server-status.not-ready{color:#ffe2a1}
+#application{max-height:calc(100dvh - 24px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#application .field input,#application .field select,#application .field textarea{font-size:16px;max-width:100%}
+#application .formbody[hidden],#application #success[hidden]{display:none!important}
+.modalhead{position:relative}
+@media(max-width:860px){
+  .windowbody{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gridq{grid-template-columns:1fr}.qcard{min-height:unset}
+  .sectionhead h2{max-width:100%}
+}
+@media(max-width:620px){
+  .brand{gap:7px;font-size:17px}.brand i{display:none}
+  .nav .button.small{padding:9px 11px;font-size:12px}
+  .hero h1{font-size:clamp(43px,12vw,68px);line-height:1.08}
+  .windowbody{padding:25px 19px 20px}
+  .windowbar span:last-child{display:none}
+  .lead{font-size:clamp(18px,5vw,23px)}
+  .sectionhead h2,.purpose h2,.bottomcta h2{font-size:clamp(26px,7.4vw,34px);line-height:1.3}
+  .sub,.desc,.purpose p{font-size:14px;line-height:1.75}
+  .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .stat{padding:12px 10px;min-width:0}.stat strong{font-size:clamp(12px,3.7vw,16px);line-height:1.6;overflow-wrap:anywhere}.stat small{font-size:11px}
+  .qcard{grid-template-columns:44px minmax(0,1fr);gap:11px;padding:17px 14px}
+  .qcard h3{font-size:17px;line-height:1.5;overflow-wrap:break-word}
+  .qcard .qicon{width:44px;height:44px;font-size:22px}
+  .prizehero h3{font-size:clamp(32px,8vw,48px)}
+  .note h3{font-size:clamp(23px,6.5vw,29px)}
+  .footer{padding-bottom:40px}
+  .footin{display:block}.footin>div{margin-bottom:18px}
+  .footin p{overflow-wrap:anywhere;line-height:1.7}
+  .floating-cta{width:calc(100% - 24px);bottom:calc(8px + env(safe-area-inset-bottom,0px));border-radius:17px;padding:6px}
+  .floating-cta .button{min-height:50px;font-size:15px;padding:10px 14px}
+  #application{width:calc(100% - 12px);max-height:calc(100dvh - 12px);border-radius:17px}
+  .formbody{padding:18px 16px 8px}.modalhead{padding:17px 16px 12px}
+  .formfooter{padding:12px 16px 18px}.error{margin:0 16px 10px}
+  .affiliation-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .affiliation-option span{font-size:13px;line-height:1.35;min-height:46px}
+  .formfooter .button{padding:12px 16px}
+  .reviewcontent{overflow-wrap:anywhere}
+}
+@media(max-width:360px){
+  .wrap{padding:0 13px}.windowbody{padding:22px 15px 18px}
+  .hero h1{font-size:42px}.brand{font-size:15px}
+  .eyebrow{font-size:11px}.stat strong{font-size:12px}
+  .sectionhead h2,.purpose h2{font-size:25px}
+  .qcard{grid-template-columns:1fr}.qcard .qicon{margin-bottom:4px}
+}
+
+
+/* ===========================================
+   LOGIN LAB editorial identity / visual-only
+   Existing layout, forms and server logic stay intact.
+   =========================================== */
+:root{
+  --bg:#F7F8FA;
+  --bg2:#F7F8FA;
+  --panel:#FFFFFF;
+  --panel-soft:#F3F5FA;
+  --text:#111827;
+  --muted:#5D6676;
+  --line:#D9DEE8;
+  --accent:#2346BC;
+  --accent-2:#E7ECFC;
+  --white:#FFFFFF;
+  --shadow:none;
+  --radius:14px;
+}
+html{background:#F7F8FA}
+body{
+  background:#F7F8FA;
+  color:#151C2B;
+  font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  font-weight:400;
+  letter-spacing:-.017em;
+}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline-color:#2346BC}
+.nav{
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #E0E4ED;
+  box-shadow:none;
+}
+.brand{font-weight:800;letter-spacing:-.035em;color:#141C2D}
+.brandmark{background:#2447BC;color:#FFF;border-radius:5px}
+.brand i{color:#68758C;font-weight:500}
+.navlinks{color:#49566E;font-weight:600}
+.button{border-radius:10px;font-weight:700;box-shadow:none!important;letter-spacing:-.02em}
+.button:hover{transform:none}
+.button.primary{background:#2447BC;color:#fff;border:1px solid #2447BC}
+.button.primary:hover{background:#183994;color:#fff}
+.button.outline{border:1px solid #D0D8E8;color:#2346BC;background:#fff}
+.button.outline:hover{background:#F5F7FE}
+.button.ghost{border:1px solid #D6DDE9;background:#fff;color:#1B2435}
+.hero:before{display:none}
+.window{
+  background:#FFF;
+  color:#151C2B;
+  border:1px solid #DCE1EA;
+  box-shadow:none;
+  border-radius:16px;
+}
+.windowbar{
+  background:#F8F9FC;
+  border-bottom:1px solid #E3E7F0;
+  color:#5E6A7C;
+  font-weight:600;
+  letter-spacing:.055em;
+}
+.dots{opacity:.5}
+.dots i,.dots i:nth-child(1),.dots i:nth-child(2),.dots i:nth-child(3){background:#9BA7BE}
+.ribbon{display:none}
+.eyebrow{color:#2447BC;font-weight:700;letter-spacing:.075em}
+.eyebrow .dot{background:#2447BC;box-shadow:none}
+.hero h1{
+  color:#151C2B;
+  font-size:clamp(56px,7.6vw,92px);
+  letter-spacing:-.064em;
+  line-height:1.04;
+  font-weight:850;
+}
+.hero h1 .white{color:#151C2B}
+.hero h1 .green{color:#2447BC}
+.lead{color:#141B2A;font-weight:700;letter-spacing:-.04em}
+.marker{
+  background:linear-gradient(transparent 88%,#B7C5EC 88% 97%,transparent 97%);
+  padding:0;
+}
+.sub{color:#596477;font-weight:400}
+.tiny{color:#788396;font-weight:500}
+.stat{
+  background:#F7F9FC;
+  border:1px solid #E0E5EE;
+  color:#182233;
+  border-radius:10px;
+  backdrop-filter:none;
+}
+.stat small{color:#66748B;font-weight:600}
+.stat strong{color:#172033;font-weight:700}
+.section.alt{background:#FFFFFF}
+.sectionhead h2,.purpose h2,.bottomcta h2{
+  color:#141C2B;
+  font-weight:800;
+  letter-spacing:-.045em;
+}
+.num{
+  background:transparent;
+  color:#2447BC;
+  border:1px solid #C8D4F3;
+  border-radius:4px;
+  font-weight:700;
+  letter-spacing:.045em;
+}
+.desc,.purpose p,.bottomcta p{color:#5A6577}
+.selectfx{background:transparent;border-left:none;color:#2447BC;padding:0}
+.note,.qcard,.panel,.prize,.stepcard{
+  background:#FFF;
+  border:1px solid #DCE2EC;
+  border-radius:12px;
+  box-shadow:none;
+}
+.notehead{color:#60708F;border-bottom:1px solid #E4E8EF;font-weight:600}
+.note h3{color:#141C2B;font-weight:800;letter-spacing:-.045em}
+.checkline{border-bottom:1px solid #EBEFF5;color:#333E51;font-weight:500}
+.check{background:#EEF2FD;color:#2447BC;border:1px solid #CDD8F3;font-weight:800}
+.qtag{color:#2447BC;font-weight:700;letter-spacing:.04em}
+.qicon,.qcard:nth-child(2) .qicon,.qcard:nth-child(3) .qicon{
+  background:#F0F3FA;
+  filter:grayscale(1);
+  border-radius:9px;
+}
+.qcard h3{font-weight:750;letter-spacing:-.04em;color:#192133}
+.qcard p,.stepcard p,.prize p,.criterion small,.rules p{color:#627084}
+.paneltitle{font-weight:800;color:#172033}
+.track{background:#EBEFF5;border-radius:4px;height:9px}
+.track div{background:#4261C9;border-radius:4px}
+.rules .quote{
+  background:#F2F5FC;
+  border:1px solid #DDE5F7;
+  color:#2544A6;
+  border-radius:10px;
+  font-weight:650;
+}
+.prizehero{
+  background:#2143B6;
+  border:1px solid #2143B6;
+  border-radius:12px;
+  box-shadow:none;
+}
+.prizehero:before{display:none}
+.prizehero .kicker{color:#D3DDF9;font-weight:700}
+.prizehero h3{font-weight:800;letter-spacing:-.05em}
+.prizehero p{color:#E3E9FA}
+.trophy{filter:grayscale(1);opacity:.7}
+.prize .kicker{color:#2447BC;font-weight:700}
+.prize h3{color:#172033;font-weight:800}
+.infoband,.statusline{color:#69748A}
+.faqs{border-top:1px solid #DCE2EC}
+.faqs details{border-bottom:1px solid #DCE2EC}
+.faqs summary{font-weight:650;color:#1C2637}
+.faqs summary::after{color:#2447BC}
+.faqs p{color:#5D687A}
+.bottomcta{background:#FFF;border-top:1px solid #E0E5EE}
+.footer{background:#F7F8FA;border-top:1px solid #DEE4ED}
+.footer p{color:#586478}
+.footer a{text-decoration-color:#ABB8D8}
+.footer a:hover{color:#2447BC}
+/* Keep fixed application CTA, recolor only. */
+.floating-cta{
+  background:rgba(255,255,255,.96);
+  border:1px solid #D7DEEC;
+  box-shadow:0 8px 24px rgba(22,35,67,.11);
+  border-radius:14px;
+}
+.floating-cta .button{border-radius:9px}
+/* Application form: same steps/fields/JS, editorial polish. */
+#application{
+  border:1px solid #D8DDE6;
+  border-radius:16px;
+  box-shadow:0 26px 90px rgba(10,20,55,.22);
+  background:#FFF;
+}
+#application::backdrop{background:rgba(13,22,45,.54)}
+.modalhead{
+  background:#F7F9FD;
+  color:#151C2B;
+  border-bottom:1px solid #DEE4ED;
+}
+.modalhead .eyebrow{color:#2447BC}
+.modalhead h2{color:#141C2B;font-weight:800;letter-spacing:-.045em}
+.close{background:#E9EDF6;color:#263D79;border:1px solid #D7DFEE}
+.progress div{background:#DCE4F2}
+.progress div.active{background:#2549BF}
+.progresslabels{color:#7A8599}
+.progresslabels span.active{color:#2447BC}
+.server-status{color:#6B7486}
+.server-status.ready{color:#176A50}
+.server-status.not-ready{color:#A85D19}
+#application .formbody h3{color:#141C2B;font-weight:800}
+#application .field{color:#273247;font-weight:650}
+#application .field input,#application .field select,#application .field textarea{
+  border:1px solid #D4DCE9;
+  border-radius:9px;
+  background:#FFF;
+  color:#151C2B;
+}
+#application .field select:disabled{background:#F4F6F8}
+#application .field input:focus,#application .field select:focus,#application .field textarea:focus{outline:2px solid #2447BC;outline-offset:0}
+#application .required{color:#2447BC}
+#application .affiliation-option span{
+  background:#FFF;
+  border:1px solid #D4DCE9;
+  border-radius:9px;
+  color:#283346;
+  font-weight:650;
+}
+#application .affiliation-option input:checked+span{
+  background:#ECF1FD;
+  color:#2143AB;
+  border-color:#2447BC;
+}
+#application .formfooter{border-top:1px solid #E0E6EF}
+#application .review,#application .consentbox{
+  background:#F9FAFD;
+  border:1px solid #DCE3EF;
+  border-radius:10px;
+}
+#application .successicon{background:#E8EEF9;color:#2447BC}
+#application .receipt{color:#2447BC}
+@media(max-width:620px){
+  .window{border-radius:12px}
+  .hero h1{font-size:clamp(43px,12vw,62px);letter-spacing:-.055em}
+  .stat{border-radius:8px}
+  .note,.qcard,.panel,.prize,.stepcard,.prizehero{border-radius:10px}
+  .floating-cta{border-radius:13px}
+  #application{border-radius:12px}
+}
+
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap navin">
+    <a class="brand" href="#top" aria-label="로그인연구소 처음으로"><span class="brandmark">↗</span> LOGIN LAB <i>로그인연구소</i></a>
+    <nav class="navlinks" aria-label="주요 메뉴">
+      <a href="#about">기획 배경</a>
+      <a href="#theme">공모 주제</a>
+      <a href="#awards">시상 안내</a>
+      <a href="#guide">참여 방법</a>
+    </nav>
+    <a class="button primary small apply" href="#application" aria-haspopup="dialog" aria-controls="application">신청하기 ↗</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="window">
+        <div class="ribbon" aria-hidden="true">NO AI</div>
+        <div class="windowbar">
+          <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span>LOGIN LAB / NO Ai 공모전</span>
+          <span>2026.11 — 12</span>
+        </div>
+        <div class="windowbody">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> 2026 LOGIN LAB CHALLENGE PROJECT</div>
+            <h1><span class="white">NO Ai</span><br><span class="green">공모전</span></h1>
+            <p class="lead">이번만큼은 <span class="marker">내가 쓸게</span></p>
+            <p class="sub">AI를 끄고, 내 생각에 로그인하다.<br>AI 없이, 내 말로 나를 소개해 보세요.</p>
+            <div class="heroactions">
+              <a class="button primary apply" href="#application" aria-haspopup="dialog" aria-controls="application">지금 바로 신청하기 →</a>
+              <a class="button outline" href="#theme">주제 보기</a>
+              <span class="tiny">예상 작성 시간 10~15분</span>
+            </div>
+          </div>
+          <div class="heroart">
+            <div class="stat-grid">
+              <div class="stat"><small>참여 대상</small><strong>서울 거주<br>2002~2008년생</strong></div>
+              <div class="stat"><small>접수 기간</small><strong>2026.11.17(화)<br>~ 12.12(토)</strong></div>
+              <div class="stat"><small>공모 분야</small><strong>AI 없이<br>나를 소개하기</strong></div>
+              <div class="stat"><small>참가 조건</small><strong>생성형 AI 사용 없이<br>직접 작성</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section alt">
+    <div class="wrap purpose">
+      <div>
+        <span class="num">01 · BACKGROUND</span>
+        <h2>AI 시대,<br><span class="selectfx">이제는 스펙보다 나만의 경쟁력.</span></h2>
+        <p>AI가 글을 쓰고, 정보를 찾고, 문제를 해결하는 시대입니다. 기술이 발전할수록 단순히 많이 아는 것보다 자신만의 관점으로 생각하고 문제를 해결하는 능력이 더 중요해지고 있습니다.</p>
+        <p>하지만 많은 청년들은 여전히 학벌, 자격증, 성적 같은 스펙에 집중하며 정작 자신이 어떤 강점을 가졌는지 발견하지 못하고 있습니다.</p>
+        <p>LOGIN LAB은 이번 공모전을 통해 청년들이 자신의 실제 경험을 돌아보며 AI로 대체하기 어려운 고유한 역량과 성장 가능성을 발견하도록 돕고자 합니다.</p>
+      </div>
+      <div class="note">
+        <div class="notehead"><span>LOGIN LAB / NOTE</span><span>Done</span></div>
+        <h3><span class="marker">완벽한 문장보다</span><br>당신의 진짜 경험이 중요해요.</h3>
+        <div class="checkline"><span class="check">✓</span><span>나를 성장시켜 준 경험과 그때의 생각을 솔직하게 적어 주세요.</span></div>
+        <div class="checkline"><span class="check">✓</span><span>잘 쓴 글보다, 나만의 생각과 행동이 담긴 글이 더 중요합니다.</span></div>
+        <div class="checkline"><span class="check">✓</span><span>AI가 대신 쓸 수 없는 나만의 장면과 감정을 들려주세요.</span></div>
+        <div class="checkline"><span class="check">✓</span><span>이번만큼은 내 경험에서 나의 경쟁력을 발견해 보세요.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="theme">
+    <div class="wrap">
+      <div class="sectionhead">
+        <div>
+          <span class="num">02 · THEME</span>
+          <h2>AI 없이, 내 말로<br>나를 소개하기</h2>
+          <p class="desc">나의 모습과 성장 경험, 앞으로의 이야기를 나만의 언어로 들려주세요.</p>
+        </div>
+      </div>
+      <div class="gridq">
+        <article class="qcard">
+          <div class="qicon" aria-hidden="true">🧭</div>
+          <div>
+            <span class="qtag">질문 01</span>
+            <h3>학교와 직장을 제외하고 나를 소개해주세요</h3>
+            <p>좋아하는 일, 성격, 가치관 등 나를 보여주는 이야기를 자유롭게 적어 주세요.</p>
+          </div>
+        </article>
+        <article class="qcard">
+          <div class="qicon" aria-hidden="true">💡</div>
+          <div>
+            <span class="qtag">질문 02</span>
+            <h3>과거에 나를 성장시켜준 경험을 들려주세요</h3>
+            <p>어떤 경험이었는지, 그 경험을 통해 무엇이 달라졌는지 적어 주세요.</p>
+          </div>
+        </article>
+        <article class="qcard">
+          <div class="qicon" aria-hidden="true">🌱</div>
+          <div>
+            <span class="qtag">질문 03</span>
+            <h3>앞으로 어떤 사람이 되고싶고, 그 이유는 무엇인가요?</h3>
+            <p>되고 싶은 모습과 그 이유를 자신의 생각을 담아 적어 주세요.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="judging">
+    <div class="wrap">
+      <div class="sectionhead">
+        <div>
+          <span class="num">03 · REVIEW</span>
+          <h2>심사 포인트 및 AI 사용 기준</h2>
+          <p class="desc">글쓰기 실력보다 경험의 진정성과 자기 이해를 중심으로 봅니다.</p>
+        </div>
+      </div>
+      <div class="judgegrid">
+        <div class="panel criteria">
+          <h3 class="paneltitle">심사 포인트</h3>
+          <div class="criterion"><strong>자기 경험의 진정성</strong><div class="track"><div style="width:92%"></div></div><small>실제 경험에서 나온 솔직한 이야기인가</small></div>
+          <div class="criterion"><strong>경험의 구체성</strong><div class="track"><div style="width:78%"></div></div><small>상황, 생각, 행동의 흐름이 생생하게 드러나는가</small></div>
+          <div class="criterion"><strong>자기이해의 깊이</strong><div class="track"><div style="width:84%"></div></div><small>그 경험을 통해 무엇을 배우고 발견했는가</small></div>
+          <div class="criterion"><strong>강점과 가능성의 발견</strong><div class="track"><div style="width:73%"></div></div><small>앞으로의 성장 가능성과 고유한 강점이 보이는가</small></div>
+        </div>
+        <div class="panel rules">
+          <h3 class="paneltitle">생성형 AI 사용 기준</h3>
+          <p>소재를 떠올리는 단계부터 답변 작성, 수정까지 전 과정을 참여자가 직접 진행해야 합니다.</p>
+          <p>생성형 AI로 주제를 추천받거나, 초안을 작성하거나, 직접 쓴 문장을 다듬는 행위는 허용하지 않습니다.</p>
+          <p>제출작은 운영진이 검토하며, 필요한 경우 글에 담긴 경험이나 표현을 선택한 이유를 추가로 물을 수 있습니다.</p>
+          <div class="quote">“생성형 AI의 도움 없이 제 경험과 생각을 바탕으로 모든 답변을 직접 작성했습니다.”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="awards">
+    <div class="wrap">
+      <div class="sectionhead">
+        <div>
+          <span class="num">04 · AWARDS</span>
+          <h2>수상 혜택</h2>
+          <p class="desc">나의 경험을 돌아보는 도전이 또 다른 가능성으로 이어질 수 있도록 준비했습니다.</p>
+        </div>
+      </div>
+      <div class="prizehero">
+        <div>
+          <div class="kicker">대상 / 1명</div>
+          <h3>100만 원</h3>
+          <p>+ 공식 상장</p>
+        </div>
+        <div class="trophy" aria-hidden="true">🏆</div>
+      </div>
+      <div class="prizegrid">
+        <article class="prize">
+          <div class="kicker">우수상 / 2명</div>
+          <h3>60만 원</h3>
+          <p>+ 공식 상장</p>
+        </article>
+        <article class="prize">
+          <div class="kicker">장려상 / 10명</div>
+          <h3>개인 역량 분석 코칭</h3>
+          <p>AI 시대 나만의 강점 발견 코칭 제공<br>+ 개인별 역량 분석지 제공</p>
+        </article>
+      </div>
+      <p class="infoband">총 수상 인원: 13명 (대상 1명, 우수상 2명, 장려상 10명).</p>
+    </div>
+  </section>
+
+  <section class="section alt" id="guide">
+    <div class="wrap">
+      <div class="sectionhead">
+        <div>
+          <span class="num">05 · HOW TO APPLY</span>
+          <h2>참여 방법</h2>
+          <p class="desc">서울 거주 2002~2008년생이라면 지원할 수 있어요.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <article class="stepcard"><span class="qtag">STEP 01</span><h3>기본 정보 입력</h3><p>이름, 출생연도, 거주 지역, 현재 소속 또는 활동, 연락처를 입력합니다.</p></article>
+        <article class="stepcard"><span class="qtag">STEP 02</span><h3>세 가지 질문 답변</h3><p>AI 없이 자신의 실제 경험을 바탕으로 세 가지 질문에 답해 주세요.</p></article>
+        <article class="stepcard"><span class="qtag">STEP 03</span><h3>동의 후 제출</h3><p>AI 미사용 확인과 개인정보 수집 안내를 확인한 뒤 지원서를 제출합니다.</p></article>
+      </div>
+      <div class="faqs">
+        <details>
+          <summary>글을 잘 쓰지 못해도 참여할 수 있나요?</summary>
+          <p>네. 화려한 표현보다 자신의 경험을 진솔하고 구체적으로 담는 것이 더 중요합니다.</p>
+        </details>
+        <details>
+          <summary>맞춤법만 AI로 검사해도 되나요?</summary>
+          <p>아니요. 이번 공모전은 생성형 AI 사용 없이 직접 작성하는 것이 원칙입니다.</p>
+        </details>
+        <details>
+          <summary>어떤 주제로 써야 하나요?</summary>
+          <p>학교와 직장을 제외한 자기소개, 나를 성장시켜 준 경험, 앞으로 되고 싶은 모습과 그 이유를 작성해 주세요.</p>
+        </details>
+        <details>
+          <summary>공모 분야는 무엇인가요?</summary>
+          <p>자신의 경험과 생각을 담아 세 가지 질문에 답하는 방식입니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottomcta">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span> AI OFF, LOG IN TO ME.</span>
+      <h2>AI를 끄고,<br><span class="marker">내 생각에 로그인.</span></h2>
+      <p>이번만큼은 AI의 도움 없이, 오직 나의 생각과 경험으로 이야기를 완성해 보세요.</p>
+      <a class="button primary apply" href="#application" aria-haspopup="dialog" aria-controls="application">NO Ai 공모전 신청하기 →</a>
+      <div class="statusline" id="applicationStatus">2026.12.12(토)까지 접수</div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footin">
+    <div>
+      <div class="brand"><span class="brandmark">↗</span> LOGIN LAB <i>로그인연구소</i></div>
+      <p>주최 · <a href="https://theloginlab.co.kr/" target="_blank" rel="noopener noreferrer">https://theloginlab.co.kr/ ↗</a></p>
+    </div>
+    <div>
+      <p>2026 NO Ai 공모전</p>
+      <p id="footerContact">문의 · <a href="mailto:wearetheloginlab@gmail.com">wearetheloginlab@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-cta" role="region" aria-label="공모전 신청"><a class="button primary apply" href="#application" aria-haspopup="dialog" aria-controls="application">NO Ai 공모전 신청하기 <span aria-hidden="true">→</span></a></div>
+
+<dialog id="application" aria-labelledby="formTitle" aria-modal="true">
+  <noscript><p style="padding:16px;color:#a10d25;font-weight:bold">신청서를 사용하려면 JavaScript가 필요합니다. Safari 또는 Chrome에서 웹사이트를 열어 주세요. <a href="#top">닫기</a></p></noscript>
+  <form id="entryForm" novalidate>
+    <div class="modalhead">
+      <div class="modalheadtop">
+        <div>
+          <span class="eyebrow">LOGIN LAB / APPLICATION</span>
+          <h2 id="formTitle">NO Ai 공모전 신청서</h2>
+          <div id="serverStatus" class="server-status" role="status" aria-live="polite">접수 서버 연결 확인 중…</div>
+        </div>
+        <button class="close" type="button" id="closeForm" aria-label="신청서 닫기">×</button>
+      </div>
+      <div id="progressWrap">
+        <div class="progress" aria-hidden="true"><div></div><div></div><div></div></div>
+        <div class="progresslabels"><span>01 기본 정보</span><span>02 나의 이야기</span><span>03 최종 확인</span></div>
+      </div>
+    </div>
+
+    <div class="formbody" data-step="0">
+      <h3 tabindex="-1">기본 정보</h3>
+      <p class="desc" style="color:#596476">먼저 지원자 정보를 알려 주세요. <span class="required">*</span>는 필수 항목입니다.</p>
+      <div class="formgrid">
+        <label class="field">이름 <input name="name" placeholder="이름을 입력해 주세요" autocomplete="name" required maxlength="80"></label>
+        <label class="field">출생연도 <select name="birthYear" required><option value="">출생연도 선택</option><option>2000</option><option>2001</option><option>2002</option><option>2003</option><option>2004</option><option>2005</option><option>2006</option><option>2007</option><option>2008</option></select></label>
+        <label class="field">거주 지역 <select name="region" required><option value="">지역 선택</option><option value="서울">서울특별시</option><option value="경기">경기도</option></select></label>
+        <label class="field">시·군·구 <select name="district" required disabled><option value="">먼저 지역을 선택해 주세요</option></select></label>
+        <fieldset class="field full affiliation-field"><legend>현재 소속 또는 활동 <span class="required">*</span></legend><div class="affiliation-options"><label class="affiliation-option"><input type="radio" name="affiliation" value="입학대기생" required><span>입학대기생</span></label><label class="affiliation-option"><input type="radio" name="affiliation" value="재학생" required><span>재학생</span></label><label class="affiliation-option"><input type="radio" name="affiliation" value="휴학생" required><span>휴학생</span></label><label class="affiliation-option"><input type="radio" name="affiliation" value="취준생" required><span>취준생</span></label><label class="affiliation-option"><input type="radio" name="affiliation" value="직장인" required><span>직장인</span></label><label class="affiliation-option"><input type="radio" name="affiliation" value="기타" required><span>기타</span></label></div><label class="affiliation-detail" id="affiliationDetailWrap" hidden><span id="affiliationDetailLabel">학교명</span><input name="affiliationDetail" id="affiliationDetail" maxlength="120" disabled placeholder="학교명을 입력해 주세요"></label></fieldset>
+        <label class="field full">연락처 <input name="contact" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="010-0000-0000" required maxlength="13"><span class="helper">숫자만 입력하면 하이픈(-)이 자동으로 표시됩니다. 공모전 운영 및 결과 안내를 위한 연락처입니다.</span></label>
+      </div>
+    </div>
+
+    <div class="formbody" data-step="1" hidden>
+      <h3 tabindex="-1">나의 이야기</h3>
+      <p class="desc" style="color:#596476">세 가지 질문에 자신의 경험을 직접 적어 주세요. 자동 저장되지 않으니 페이지를 닫거나 새로고침하지 않도록 주의해 주세요.</p>
+      <div id="formQuestions"></div>
+    </div>
+
+    <div class="formbody" data-step="2" hidden>
+      <h3 tabindex="-1">최종 확인 및 제출</h3>
+      <p class="desc" style="color:#596476">작성한 정보를 확인하고 필수 동의 항목에 체크해 주세요.</p>
+      <details class="review"><summary>내 지원서 미리 보기</summary><div class="reviewcontent" id="reviewContent"></div></details>
+      <div class="consentbox">
+        <h4>생성형 AI 미사용 확인 (필수)</h4>
+        <p>소재 추천, 초안 작성, 문장 수정 등 전 과정에 생성형 AI를 사용하지 않았음을 확인합니다.</p>
+        <label class="checkfield"><input name="aiConsent" type="checkbox" required>생성형 AI의 도움 없이 제 경험과 생각을 바탕으로 모든 답변을 직접 작성했습니다.</label>
+      </div>
+      <div class="consentbox">
+        <h4>개인정보 수집·이용 안내 (필수)</h4>
+        <p id="privacyText">개인정보 수집·이용자: LOGIN LAB 로그인연구소. 수집 항목: 이름, 출생연도, 거주 지역, 소속/활동 및 해당하는 경우 학교명, 연락처, 답변 3문항, 접수번호와 동의 기록. 목적: 신청 접수·자격 확인·심사·수상 결과 및 혜택 안내. 보유기간: 공모전 종료 후 3개월. 문의: wearetheloginlab@gmail.com. 필수 동의 거부 시 신청할 수 없습니다. 답변에는 타인의 개인정보를 기재하지 마세요.</p>
+        <label class="checkfield"><input name="privacyConsent" type="checkbox" required>개인정보 수집·이용 안내를 확인했으며 동의합니다.</label>
+      </div>
+    </div>
+
+    <div class="error" id="formError" role="alert" hidden></div>
+    <div class="formfooter" id="formFooter">
+      <button type="button" class="button ghost" id="prev">닫기</button>
+      <button type="button" class="button primary" id="next">다음 단계 →</button>
+    </div>
+    <div class="success" id="success" hidden>
+      <div class="successicon">✓</div>
+      <h3 id="successTitle">신청이 완료되었습니다!</h3>
+      <p id="successMessage"></p>
+      <p class="receipt" id="receipt"></p>
+      <button type="button" class="button ghost" id="done">닫기</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbySjH0GS-YkUbIty1ZDOCPYkriGGXoJ2Sh8w79C_ptIsIbURPvtB7FHmz5P6tPObiTKMw/exec';
+const rawConfig = {live:true, open:true, autoOpen:false, contact:'wearetheloginlab@gmail.com', privacyText:document.getElementById('privacyText').textContent};
+</script>
+<script>
+'use strict';
+const CONFIG = typeof rawConfig !== 'undefined' && rawConfig && rawConfig.live ? rawConfig : {live:false};
+const questions = [
+  ['질문 01', '학교와 직장을 제외하고 나를 소개해주세요', '좋아하는 일, 성격, 가치관 등 나를 보여주는 이야기를 자유롭게 적어 주세요.'],
+  ['질문 02', '과거에 나를 성장시켜준 경험을 들려주세요', '어떤 경험이었는지, 그 경험을 통해 무엇이 달라졌는지 적어 주세요.'],
+  ['질문 03', '앞으로 어떤 사람이 되고싶고, 그 이유는 무엇인가요?', '되고 싶은 모습과 그 이유를 자신의 생각을 담아 적어 주세요.']
+];
+const districts={서울:'강남구 강동구 강북구 강서구 관악구 광진구 구로구 금천구 노원구 도봉구 동대문구 동작구 마포구 서대문구 서초구 성동구 성북구 송파구 양천구 영등포구 용산구 은평구 종로구 중구 중랑구'.split(' '),경기:'가평군 고양시 과천시 광명시 광주시 구리시 군포시 김포시 남양주시 동두천시 부천시 성남시 수원시 시흥시 안산시 안성시 안양시 양주시 양평군 여주시 연천군 오산시 용인시 의왕시 의정부시 이천시 파주시 평택시 포천시 하남시 화성시'.split(' ')};
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const dlg=$('#application'), form=$('#entryForm'), error=$('#formError');
+// Explicit element references work consistently even when browsers expose different form.elements named properties.
+const e={
+  name:form.querySelector('[name="name"]'),
+  birthYear:form.querySelector('[name="birthYear"]'),
+  region:form.querySelector('[name="region"]'),
+  district:form.querySelector('[name="district"]'),
+  affiliationDetail:form.querySelector('[name="affiliationDetail"]'),
+  contact:form.querySelector('[name="contact"]'),
+  get affiliation(){return {value:form.querySelector('input[name="affiliation"]:checked')?.value || ''}},
+  get aiConsent(){return form.querySelector('[name="aiConsent"]')},
+  get privacyConsent(){return form.querySelector('[name="privacyConsent"]')},
+  get q1(){return form.querySelector('[name="q1"]')},
+  get q2(){return form.querySelector('[name="q2"]')},
+  get q3(){return form.querySelector('[name="q3"]')}
+};
+let step=0, sending=false, completed=false, token='';
+questions.forEach((q,i)=>{
+  const el=document.createElement('div');
+  el.className='field qfield';
+  el.innerHTML=`<span class="qtag">${q[0]}</span><label for="q${i+1}">${q[1]}</label><span class="helper">${q[2]}</span><textarea id="q${i+1}" name="q${i+1}" required maxlength="5000" placeholder="나만의 이야기를 직접 적어 주세요."></textarea><span class="count" aria-live="off">0자</span>`;
+  $('#formQuestions').append(el);
+  const ta=el.querySelector('textarea');
+  ta.addEventListener('input',()=>el.querySelector('.count').textContent=`${ta.value.length.toLocaleString('ko-KR')}자`);
+});
+function updateDistrict(){const selected=e.district.value; e.district.replaceChildren(new Option(e.region.value?'시·군·구 선택':'먼저 지역을 선택해 주세요','')); (districts[e.region.value]||[]).forEach(x=>e.district.add(new Option(x,x))); e.district.disabled=!e.region.value; if((districts[e.region.value]||[]).includes(selected)) e.district.value=selected;}
+e.region.addEventListener('change',updateDistrict);e.region.addEventListener('input',updateDistrict);updateDistrict();
+// Korean phone autoformat: 01012345678 -> 010-1234-5678; protects paste and mobile input.
+function formatContact(value){
+  let digits=String(value||'').replace(/\D/g,'');
+  if(digits.startsWith('8210'))digits='0'+digits.slice(2);
+  digits=digits.slice(0,11);
+  if(digits.length<=3)return digits;
+  if(digits.length<=7)return digits.slice(0,3)+'-'+digits.slice(3);
+  return digits.slice(0,3)+'-'+digits.slice(3,7)+'-'+digits.slice(7);
+}
+function updateContact(){
+  const field=e.contact, oldValue=field.value;
+  const before=field.selectionStart ?? oldValue.length;
+  const n=oldValue.slice(0,before).replace(/\D/g,'').length;
+  const next=formatContact(oldValue);
+  field.value=next;
+  // Cursor remains next to the digit the user edited instead of jumping to the end.
+  let pos=0, seen=0;
+  while(pos<next.length && seen<n){if(/\d/.test(next[pos]))seen++;pos++;}
+  try{field.setSelectionRange(pos,pos)}catch(err){}
+}
+e.contact.addEventListener('input',updateContact);
+e.contact.addEventListener('change',updateContact);
+e.contact.addEventListener('blur',updateContact);
+
+function updateAffiliation(){const choice=e.affiliation.value; const detail=e.affiliationDetail; const school=choice==='입학대기생'||choice==='재학생'; const other=choice==='기타'; const active=school||other; const mode=school?'school':other?'other':''; if(detail.dataset.mode!==mode){detail.value='';detail.dataset.mode=mode;} $('#affiliationDetailWrap').hidden=!active;detail.disabled=!active;detail.required=active;$('#affiliationDetailLabel').textContent=school?'학교명':'현재 소속 또는 활동 직접 입력';detail.placeholder=school?'학교명을 입력해 주세요':'현재 소속 또는 활동을 입력해 주세요';if(!active)detail.value='';}
+$$('input[name="affiliation"]').forEach(el=>{el.addEventListener('change',updateAffiliation);el.addEventListener('click',updateAffiliation)});updateAffiliation();
+
+// 실제 서버 연결 상태는 checkBackend()가 확인합니다. 
+function fail(msg){error.textContent=msg;error.hidden=false;error.scrollIntoView({block:'nearest'});}function clearError(){error.hidden=true;error.textContent='';}
+function showStep(n){step=n;clearError();$$('.formbody').forEach((x,i)=>x.hidden=i!==n);$$('.progress div').forEach((x,i)=>x.classList.toggle('active',i<=n));$$('.progresslabels span').forEach((x,i)=>x.classList.toggle('active',i===n));$('#prev').textContent=n===0?'닫기':'← 이전';$('#next').textContent=n===2?(CONFIG.live?'지원서 제출하기':'제출 테스트'):'다음 단계 →';if(n===2) renderReview(); dlg.scrollTop=0; const heading=$(`[data-step="${n}"] h3`); if(heading) heading.focus({preventScroll:true});}
+function renderReview(){const f=getData(); $('#reviewContent').textContent=`이름: ${f.name}\n출생연도: ${f.birthYear}\n거주 지역: ${f.region} ${f.district}\n현재 소속 또는 활동: ${f.affiliation}\n연락처: ${f.contact}\n\n` + questions.map((q,i)=>`${q[0]}. ${q[1]}\n${f['q'+(i+1)]}`).join('\n\n');}
+function valid(n){clearError(); if(n===0)updateContact(); const scope=$(`[data-step="${n}"]`); if(n===0&&!e.affiliation.value){fail('현재 소속 또는 활동을 선택해 주세요.'); $('input[name="affiliation"]').focus();return false;} if(n===0&&!e.affiliationDetail.disabled&&!e.affiliationDetail.value.trim()){fail(e.affiliation.value==='기타'?'현재 소속 또는 활동을 직접 입력해 주세요.':'학교명을 입력해 주세요.');e.affiliationDetail.focus();return false;} for(const field of scope.querySelectorAll('input, select, textarea')){if(field.disabled || field.type==='radio') continue; if(!field.checkValidity() || (field.required && typeof field.value==='string' && field.type!=='checkbox' && !field.value.trim())){fail('필수 항목을 모두 입력하거나 확인해 주세요.'); field.focus(); return false;}} if(n===0){const digits=e.contact.value.replace(/[^0-9]/g,''); if(!/^010[0-9]{8}$/.test(digits)){fail('010으로 시작하는 휴대전화 번호 11자리를 입력해 주세요.'); e.contact.focus(); return false;} if(!(districts[e.region.value]||[]).includes(e.district.value)){fail('거주 지역을 정확히 선택해 주세요.'); return false;}} return true;}
+function getData(){const result={token}; ['name','birthYear','region','district','affiliation','contact','q1','q2','q3'].forEach(k=>result[k]=(e[k]&&e[k].value||'').trim()); if(!e.affiliationDetail.disabled && e.affiliationDetail.value.trim()) result.affiliation+=' ('+e.affiliationDetail.value.trim()+')'; result.affiliationType=e.affiliation.value; result.affiliationDetail=e.affiliationDetail.disabled?'':e.affiliationDetail.value.trim(); result.aiConsent=e.aiConsent.checked; result.privacyConsent=e.privacyConsent.checked; return result;}
+function resetForm(){form.reset(); updateDistrict(); updateAffiliation(); $$('.count').forEach(x=>x.textContent='0자'); $('#success').hidden=true; $('#formFooter').hidden=false; $('#progressWrap').hidden=false; completed=false; token=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2); showStep(0);} 
+let lastTrigger=null;
+function start(ev){
+  if(ev){ev.preventDefault();lastTrigger=ev.currentTarget;}
+  if(CONFIG.live&&!CONFIG.open) return;
+  if(!token||completed) resetForm();
+  if(!dlg.hasAttribute('open')){
+    try { if(typeof dlg.showModal!=='function') throw new Error('dialog fallback'); dlg.showModal(); }
+    catch(err){dlg.setAttribute('open','');dlg.classList.add('fallback-open');}
+    document.body.classList.add('modalopen');
+  }
+  if(!completed) showStep(step);
+  checkBackend();
+}
+$$('.apply').forEach(b=>b.addEventListener('click',start));
+function close(){
+  if(sending) return;
+  if(dlg.classList.contains('fallback-open')){dlg.classList.remove('fallback-open');dlg.removeAttribute('open');}
+  else if(typeof dlg.close==='function'&&dlg.open){dlg.close();}
+  else {dlg.removeAttribute('open');}
+  document.body.classList.remove('modalopen');
+  if(location.hash==='#application'){try{history.replaceState(null,'',location.pathname+location.search+'#top');}catch(err){location.hash='top';}}
+  if(lastTrigger)lastTrigger.focus({preventScroll:true});
+} $('#closeForm').addEventListener('click',close); dlg.addEventListener('cancel',ev=>{if(sending) ev.preventDefault();}); dlg.addEventListener('close',()=>document.body.classList.remove('modalopen')); $('#prev').addEventListener('click',()=>{if(!sending){if(step===0) close(); else showStep(step-1);}}); $('#done').addEventListener('click',close);
+function complete(res){sending=false; $('#next').disabled=false; $('#prev').disabled=false; $('#closeForm').disabled=false; completed=true; $$('.formbody').forEach(x=>x.hidden=true); $('#formFooter').hidden=true; $('#progressWrap').hidden=true; clearError(); $('#success').hidden=false; $('#successTitle').textContent=CONFIG.live?'신청이 완료되었습니다!':'제출 테스트가 완료되었습니다!'; $('#successMessage').textContent=CONFIG.live?'소중한 이야기를 들려주셔서 감사합니다. 접수번호를 보관해 주세요.':'미리보기 모드입니다. 입력한 정보는 전송되거나 저장되지 않았습니다.'; $('#receipt').textContent=CONFIG.live?res.receipt:''; form.reset(); updateDistrict(); updateAffiliation(); $('#reviewContent').textContent=''; dlg.scrollTop=0; $('#done').focus();}
+function setSending(isSending){
+  sending=isSending;
+  $('#next').disabled=isSending;
+  $('#prev').disabled=isSending;
+  $('#closeForm').disabled=isSending;
+  $('#next').textContent=isSending?'접수 확인 중…':'지원서 제출하기';
+}
+function jsonp(params, timeoutMs=12000){
+  return new Promise((resolve,reject)=>{
+    const cb='__noai_'+Math.random().toString(36).slice(2,12);
+    const script=document.createElement('script');
+    let done=false;
+    const tid=setTimeout(()=>finish(new Error('시간 초과')),timeoutMs);
+    function finish(err,data){
+      if(done)return;
+      done=true;clearTimeout(tid);delete window[cb];script.remove();
+      if(err)reject(err);else resolve(data);
+    }
+    window[cb]=data=>finish(null,data);
+    script.onerror=()=>finish(new Error('서버 응답 실패'));
+    script.src=API_URL+'?'+new URLSearchParams({...params,callback:cb,ts:String(Date.now())}).toString();
+    document.head.appendChild(script);
+  });
+}
+let backendReady=false;
+let checkingBackend=null;
+async function checkBackend(){
+  if(checkingBackend)return checkingBackend;
+  const status=$('#serverStatus');
+  status.textContent='접수 서버 연결 확인 중…';
+  status.className='server-status';
+  checkingBackend=(async()=>{
+    try{
+      const info=await jsonp({mode:'health'},12000);
+      backendReady=!!(info&&info.ready&&info.version==='NOAI-2026-11-21');
+      if(backendReady){
+        status.textContent='● 신청 접수 서버 연결됨';
+        status.className='server-status ready';
+      }else{
+        status.textContent=(info&&info.reason)||'신청 서버 설정을 확인해 주세요. 배포 권한과 스프레드시트 ID를 점검해 주세요.';
+        status.className='server-status not-ready';
+      }
+    }catch(err){
+      backendReady=false;
+      status.textContent='서버 응답을 확인할 수 없습니다. 배포 URL과 웹 앱 접근 권한을 확인해 주세요.';
+      status.className='server-status not-ready';
+    }
+    return backendReady;
+  })();
+  const ok=await checkingBackend;
+  checkingBackend=null;
+  return ok;
+}
+function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
+async function waitForReceipt(receiptToken){
+  // Only an opaque, random token is passed through GET; personal answers are never in a URL.
+  for(let i=0;i<7;i++){
+    if(i)await sleep(1800);
+    try{
+      const result=await jsonp({mode:'receipt',token:receiptToken},9000);
+      if(result&&result.saved&&result.receipt)return result;
+    }catch(err){/* transient check errors: continue verifying */}
+  }
+  throw new Error('접수번호를 아직 확인할 수 없습니다. 중복 접수를 피하기 위해 먼저 운영팀에 문의해 주세요.');
+}
+async function submit(){
+  for(let i=0;i<3;i++){
+    if(!valid(i)){
+      if(step!==i){showStep(i);valid(i);}return;
+    }
+  }
+  const ok=await checkBackend();
+  if(!ok){fail('접수 서버 연결이 확인되지 않았습니다. 운영자에게 문의해 주세요.');return;}
+  const data=getData();
+  setSending(true);
+  clearError();
+  try{
+    // POST body, not query parameters. Apps Script response is opaque cross-origin.
+    // We do not show success until a separate read-only receipt check confirms DB save.
+    const body=new URLSearchParams({payload:JSON.stringify(data)}).toString();
+    const controller=new AbortController();
+    const postTimer=setTimeout(()=>controller.abort(),15000);
+    try{
+      await fetch(API_URL,{method:'POST',mode:'no-cors',credentials:'omit',headers:{'Content-Type':'application/x-www-form-urlencoded'},body,signal:controller.signal});
+    }catch(err){
+      // The POST may already have been received even if the redirect was blocked.
+      // Check receipt rather than sending the POST again.
+    }finally{clearTimeout(postTimer);}
+    const receipt=await waitForReceipt(data.token);
+    complete({receipt:receipt.receipt});
+  }catch(err){
+    setSending(false);
+    fail(err.message||'접수 상태를 확인하지 못했습니다. 다시 제출하기 전 운영팀에 문의해 주세요.');
+  }
+}
+function restore(msg){sending=false; $('#next').disabled=false; $('#prev').disabled=false; $('#closeForm').disabled=false; $('#next').textContent='지원서 제출하기'; fail(msg);} if(location.hash==='#application') start();
+window.addEventListener('hashchange',()=>{if(location.hash==='#application') start();});
+$('#next').addEventListener('click',()=>{if(sending) return; if(valid(step)){if(step<2) showStep(step+1); else submit();}}); form.addEventListener('submit',ev=>{ev.preventDefault(); if(!sending&&!completed) $('#next').click();});
+</script>
+</body>
+</html>
