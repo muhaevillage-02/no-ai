@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b18c7">
+<meta name="theme-color" content="#F7F8FA">
 <meta name="site-build" content="noai-form-verified-20261121-r3">
 <title>NO Ai 공모전 | LOGIN LAB</title>
 <style>
@@ -211,6 +211,235 @@ body.modalopen .floating-cta{visibility:hidden}
   .sectionhead h2,.purpose h2{font-size:25px}
   .qcard{grid-template-columns:1fr}.qcard .qicon{margin-bottom:4px}
 }
+
+
+/* ===========================================
+   LOGIN LAB editorial identity / visual-only
+   Existing layout, forms and server logic stay intact.
+   =========================================== */
+:root{
+  --bg:#F7F8FA;
+  --bg2:#F7F8FA;
+  --panel:#FFFFFF;
+  --panel-soft:#F3F5FA;
+  --text:#111827;
+  --muted:#5D6676;
+  --line:#D9DEE8;
+  --accent:#2346BC;
+  --accent-2:#E7ECFC;
+  --white:#FFFFFF;
+  --shadow:none;
+  --radius:14px;
+}
+html{background:#F7F8FA}
+body{
+  background:#F7F8FA;
+  color:#151C2B;
+  font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,sans-serif;
+  font-weight:400;
+  letter-spacing:-.017em;
+}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline-color:#2346BC}
+.nav{
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #E0E4ED;
+  box-shadow:none;
+}
+.brand{font-weight:800;letter-spacing:-.035em;color:#141C2D}
+.brandmark{background:#2447BC;color:#FFF;border-radius:5px}
+.brand i{color:#68758C;font-weight:500}
+.navlinks{color:#49566E;font-weight:600}
+.button{border-radius:10px;font-weight:700;box-shadow:none!important;letter-spacing:-.02em}
+.button:hover{transform:none}
+.button.primary{background:#2447BC;color:#fff;border:1px solid #2447BC}
+.button.primary:hover{background:#183994;color:#fff}
+.button.outline{border:1px solid #D0D8E8;color:#2346BC;background:#fff}
+.button.outline:hover{background:#F5F7FE}
+.button.ghost{border:1px solid #D6DDE9;background:#fff;color:#1B2435}
+.hero:before{display:none}
+.window{
+  background:#FFF;
+  color:#151C2B;
+  border:1px solid #DCE1EA;
+  box-shadow:none;
+  border-radius:16px;
+}
+.windowbar{
+  background:#F8F9FC;
+  border-bottom:1px solid #E3E7F0;
+  color:#5E6A7C;
+  font-weight:600;
+  letter-spacing:.055em;
+}
+.dots{opacity:.5}
+.dots i,.dots i:nth-child(1),.dots i:nth-child(2),.dots i:nth-child(3){background:#9BA7BE}
+.ribbon{display:none}
+.eyebrow{color:#2447BC;font-weight:700;letter-spacing:.075em}
+.eyebrow .dot{background:#2447BC;box-shadow:none}
+.hero h1{
+  color:#151C2B;
+  font-size:clamp(56px,7.6vw,92px);
+  letter-spacing:-.064em;
+  line-height:1.04;
+  font-weight:850;
+}
+.hero h1 .white{color:#151C2B}
+.hero h1 .green{color:#2447BC}
+.lead{color:#141B2A;font-weight:700;letter-spacing:-.04em}
+.marker{
+  background:linear-gradient(transparent 88%,#B7C5EC 88% 97%,transparent 97%);
+  padding:0;
+}
+.sub{color:#596477;font-weight:400}
+.tiny{color:#788396;font-weight:500}
+.stat{
+  background:#F7F9FC;
+  border:1px solid #E0E5EE;
+  color:#182233;
+  border-radius:10px;
+  backdrop-filter:none;
+}
+.stat small{color:#66748B;font-weight:600}
+.stat strong{color:#172033;font-weight:700}
+.section.alt{background:#FFFFFF}
+.sectionhead h2,.purpose h2,.bottomcta h2{
+  color:#141C2B;
+  font-weight:800;
+  letter-spacing:-.045em;
+}
+.num{
+  background:transparent;
+  color:#2447BC;
+  border:1px solid #C8D4F3;
+  border-radius:4px;
+  font-weight:700;
+  letter-spacing:.045em;
+}
+.desc,.purpose p,.bottomcta p{color:#5A6577}
+.selectfx{background:transparent;border-left:none;color:#2447BC;padding:0}
+.note,.qcard,.panel,.prize,.stepcard{
+  background:#FFF;
+  border:1px solid #DCE2EC;
+  border-radius:12px;
+  box-shadow:none;
+}
+.notehead{color:#60708F;border-bottom:1px solid #E4E8EF;font-weight:600}
+.note h3{color:#141C2B;font-weight:800;letter-spacing:-.045em}
+.checkline{border-bottom:1px solid #EBEFF5;color:#333E51;font-weight:500}
+.check{background:#EEF2FD;color:#2447BC;border:1px solid #CDD8F3;font-weight:800}
+.qtag{color:#2447BC;font-weight:700;letter-spacing:.04em}
+.qicon,.qcard:nth-child(2) .qicon,.qcard:nth-child(3) .qicon{
+  background:#F0F3FA;
+  filter:grayscale(1);
+  border-radius:9px;
+}
+.qcard h3{font-weight:750;letter-spacing:-.04em;color:#192133}
+.qcard p,.stepcard p,.prize p,.criterion small,.rules p{color:#627084}
+.paneltitle{font-weight:800;color:#172033}
+.track{background:#EBEFF5;border-radius:4px;height:9px}
+.track div{background:#4261C9;border-radius:4px}
+.rules .quote{
+  background:#F2F5FC;
+  border:1px solid #DDE5F7;
+  color:#2544A6;
+  border-radius:10px;
+  font-weight:650;
+}
+.prizehero{
+  background:#2143B6;
+  border:1px solid #2143B6;
+  border-radius:12px;
+  box-shadow:none;
+}
+.prizehero:before{display:none}
+.prizehero .kicker{color:#D3DDF9;font-weight:700}
+.prizehero h3{font-weight:800;letter-spacing:-.05em}
+.prizehero p{color:#E3E9FA}
+.trophy{filter:grayscale(1);opacity:.7}
+.prize .kicker{color:#2447BC;font-weight:700}
+.prize h3{color:#172033;font-weight:800}
+.infoband,.statusline{color:#69748A}
+.faqs{border-top:1px solid #DCE2EC}
+.faqs details{border-bottom:1px solid #DCE2EC}
+.faqs summary{font-weight:650;color:#1C2637}
+.faqs summary::after{color:#2447BC}
+.faqs p{color:#5D687A}
+.bottomcta{background:#FFF;border-top:1px solid #E0E5EE}
+.footer{background:#F7F8FA;border-top:1px solid #DEE4ED}
+.footer p{color:#586478}
+.footer a{text-decoration-color:#ABB8D8}
+.footer a:hover{color:#2447BC}
+/* Keep fixed application CTA, recolor only. */
+.floating-cta{
+  background:rgba(255,255,255,.96);
+  border:1px solid #D7DEEC;
+  box-shadow:0 8px 24px rgba(22,35,67,.11);
+  border-radius:14px;
+}
+.floating-cta .button{border-radius:9px}
+/* Application form: same steps/fields/JS, editorial polish. */
+#application{
+  border:1px solid #D8DDE6;
+  border-radius:16px;
+  box-shadow:0 26px 90px rgba(10,20,55,.22);
+  background:#FFF;
+}
+#application::backdrop{background:rgba(13,22,45,.54)}
+.modalhead{
+  background:#F7F9FD;
+  color:#151C2B;
+  border-bottom:1px solid #DEE4ED;
+}
+.modalhead .eyebrow{color:#2447BC}
+.modalhead h2{color:#141C2B;font-weight:800;letter-spacing:-.045em}
+.close{background:#E9EDF6;color:#263D79;border:1px solid #D7DFEE}
+.progress div{background:#DCE4F2}
+.progress div.active{background:#2549BF}
+.progresslabels{color:#7A8599}
+.progresslabels span.active{color:#2447BC}
+.server-status{color:#6B7486}
+.server-status.ready{color:#176A50}
+.server-status.not-ready{color:#A85D19}
+#application .formbody h3{color:#141C2B;font-weight:800}
+#application .field{color:#273247;font-weight:650}
+#application .field input,#application .field select,#application .field textarea{
+  border:1px solid #D4DCE9;
+  border-radius:9px;
+  background:#FFF;
+  color:#151C2B;
+}
+#application .field select:disabled{background:#F4F6F8}
+#application .field input:focus,#application .field select:focus,#application .field textarea:focus{outline:2px solid #2447BC;outline-offset:0}
+#application .required{color:#2447BC}
+#application .affiliation-option span{
+  background:#FFF;
+  border:1px solid #D4DCE9;
+  border-radius:9px;
+  color:#283346;
+  font-weight:650;
+}
+#application .affiliation-option input:checked+span{
+  background:#ECF1FD;
+  color:#2143AB;
+  border-color:#2447BC;
+}
+#application .formfooter{border-top:1px solid #E0E6EF}
+#application .review,#application .consentbox{
+  background:#F9FAFD;
+  border:1px solid #DCE3EF;
+  border-radius:10px;
+}
+#application .successicon{background:#E8EEF9;color:#2447BC}
+#application .receipt{color:#2447BC}
+@media(max-width:620px){
+  .window{border-radius:12px}
+  .hero h1{font-size:clamp(43px,12vw,62px);letter-spacing:-.055em}
+  .stat{border-radius:8px}
+  .note,.qcard,.panel,.prize,.stepcard,.prizehero{border-radius:10px}
+  .floating-cta{border-radius:13px}
+  #application{border-radius:12px}
+}
+
 </style>
 </head>
 <body>
